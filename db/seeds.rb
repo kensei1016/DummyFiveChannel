@@ -5,3 +5,74 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# -------------------------------------------
+# Fakerを日本語化する
+Faker::Config.locale = :ja
+
+# 指定した文字数の文字列を生成する
+def create_caption(number)
+  Faker::Lorem.characters(number: number)
+end
+# -------------------------------------------
+
+# users
+profiles = [
+  { email: "guest@example.com",   password: "password" },
+  { email: "kensei@example.com",  password: "password" },
+  { email: "tomy@example.com",   password: "password" }
+]
+
+profiles.each do |profile|
+  User.find_or_create_by!(email: profile[:email]) do |user|
+    user.email = profile[:email]
+    user.password = profile[:password]
+  end
+end
+# users/
+
+# sureads
+suread_datas = [
+  { title: "【新型コロナ】〇〇県△△市で感染が拡大。知事より早急な対策が必要",  user_id: 1},
+  { title: "ロシアで雪道を歩行中滑って転倒する事故が発生［バッハ☆］",  user_id: 1},
+  { title: "中国人観光客による爆買が話題に",  user_id: 2}
+]
+
+suread_datas.each do |suread_data|
+  Suread.find_or_create_by!(title: suread_data[:title]) do |suread|
+    suread.title = suread_data[:title]
+    suread.user_id = suread_data[:user_id]
+  end
+end
+# sureads/
+
+# responses
+response_datas = [
+  { suread_id: 1,  user_id: 1, comment: create_caption(100) },
+  { suread_id: 1,  user_id: 2, comment: create_caption(30) },
+  { suread_id: 1,  user_id: 3, comment: create_caption(5) },
+  { suread_id: 1,  user_id: 1, comment: create_caption(82) }
+]
+
+response_datas.each do |response_data|
+  Response.create!(
+    suread_id: response_data[:suread_id],
+    user_id: response_data[:user_id],
+    comment: response_data[:comment]
+  )
+end
+# responses/
+
+# categories
+category_datas = [
+  { name: "ニュース速報" },
+  { name: "芸能" },
+  { name: "政治" }
+]
+
+category_datas.each do |category_data|
+  Category.create!(
+    name: category_data[:name]
+  )
+end
+# categories/
