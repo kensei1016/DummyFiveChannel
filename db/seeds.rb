@@ -18,14 +18,15 @@ end
 
 # users
 profiles = [
-  { email: "guest@example.com",   password: "password" },
-  { email: "kensei@example.com",  password: "password" },
-  { email: "tomy@example.com",   password: "password" }
+  { email: "guest@example.com",   name: "guest",   password: "password" },
+  { email: "kensei@example.com",  name: "kensei",  password: "password" },
+  { email: "tomy@example.com",    name: "tomy",    password: "password" }
 ]
 
 profiles.each do |profile|
   User.find_or_create_by!(email: profile[:email]) do |user|
     user.email = profile[:email]
+    user.name = profile[:name]
     user.password = profile[:password]
   end
 end
@@ -76,3 +77,10 @@ category_datas.each do |category_data|
   )
 end
 # categories/
+
+# sureads category
+Suread.find(1).categories << Category.find(1)
+Suread.find(1).categories << Category.find(2)
+Suread.find(2).categories << Category.find(2)
+Suread.find(3).categories << Category.find(3)
+# sureads category/
