@@ -1,2 +1,28 @@
-<h1>Sureads#index</h1>
-<p>Find me in app/views/sureads/index.html.erb</p>
+<div class="container-fruid">
+  <div class="headline row justify-content-center">
+    <p class="col-11">最新スレッドたれ流し中。。。(news)</p>
+  </div>
+
+  <div class="categories row justify-content-center">
+    <p class="col-11">
+      <%= link_to 'ニュース速報＋', category_path(Category.find(1)) %>
+      では社会・政治・国際・経済からネットの話題や地方ニュースまで様々な範囲のニュースを扱っています。
+    </p>
+  </div>
+
+  <div class="sureads row justify-content-center">
+    <div class="col-11">
+      <% @sureads.each do |suread| %>
+        <p>
+          <%= suread.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <%= suread.categories.map{|category| "[#{category.name}]"}.join('') %>
+          <%= link_to suread_path(suread) do %>
+            <%= suread.title %>
+            <%#= "[#{suread.user.name}]" %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

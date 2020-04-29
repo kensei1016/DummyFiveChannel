@@ -6,6 +6,11 @@ class SureadsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get show" do
+    get sureads_show_url
+    assert_response :success
+  end
+
   test "should get create" do
     get sureads_create_url
     assert_response :success

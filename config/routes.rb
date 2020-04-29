@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  root 'homes#top'
+  get 'sureads/index'
+  get 'sureads/show'
+  get 'sureads/create'
+  get 'sureads/show'
+  root 'sureads#index'
 
   devise_for :users
   
-  resources :sureads, only: [:index, :create] do
+  resources :sureads, only: [:index, :show, :create] do
     collection do
       get 'search', to: 'sureads#search'
     end
