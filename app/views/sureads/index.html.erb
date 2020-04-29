@@ -18,7 +18,7 @@
           <%= suread.categories.map{|category| "[#{category.name}]"}.join('') %>
           <%= link_to suread_path(suread) do %>
             <%= suread.title %>
-            <%#= "[#{suread.user.name}]" %>
+            <%= "[#{suread.user.name}]" %>
           <% end %>
         </p>
       <% end %>

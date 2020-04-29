@@ -1,2 +1,46 @@
-<h1>Sureads#show</h1>
-<p>Find me in app/views/sureads/show.html.erb</p>
+<div class="container-fruid">
+  <div class="row justify-content-center suread-header">
+    <div class="col-11">
+      <p>
+        <%= @suread.title %>
+        <%= "[#{@suread.user.name}]" %>
+      </p>
+      <p class="comment-num"><%= @suread.responses.count %>コメント</p>
+    </div>
+  </div>
+  
+  <div class="row justify-content-center sureads-display">
+    <div class="col-11 pt-3">
+      <% @suread.responses.each do |response| %>
+        <div class="suread-box">
+          <p>
+            <span class="user-name"><%= response.name %></span>
+            <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+            <% time = Time.now %>
+            <%= response.created_at.strftime("%Y/%m/%d(#{wd[time.wday]}) %M:%d:%S.%L") %>
+          </p>
+          <p>
+            <%= response.comment %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="row justify-content-center sureads-input">
+    <div class="col-11 pt-3">
+      <%= form_with model: [@suread, Response.new] do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, autocomplete: "name", placeholder: "名前（省略可）", class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.text_area :comment, rows: '5', autocomplete: "comment", placeholder: "コメント", class:"form-control" %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.submit "書き込む", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -49,16 +49,16 @@ end
 
 # responses
 response_datas = [
-  { suread_id: 1,  user_id: 1, comment: create_caption(100) },
-  { suread_id: 1,  user_id: 2, comment: create_caption(30) },
-  { suread_id: 1,  user_id: 3, comment: create_caption(5) },
-  { suread_id: 1,  user_id: 1, comment: create_caption(82) }
+  { suread_id: 1,  name: "guest", comment: create_caption(100) },
+  { suread_id: 1,  name: "kensei", comment: create_caption(30) },
+  { suread_id: 1,  name: "名無しさん", comment: create_caption(5) },
+  { suread_id: 1,  name: "オクラ成人", comment: create_caption(82) }
 ]
 
 response_datas.each do |response_data|
   Response.create!(
     suread_id: response_data[:suread_id],
-    user_id: response_data[:user_id],
+    name: response_data[:name],
     comment: response_data[:comment]
   )
 end

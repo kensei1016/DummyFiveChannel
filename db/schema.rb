@@ -27,12 +27,11 @@ ActiveRecord::Schema.define(version: 2020_04_29_044741) do
 
   create_table "responses", force: :cascade do |t|
     t.integer "suread_id"
-    t.integer "user_id"
+    t.string "name"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["suread_id"], name: "index_responses_on_suread_id"
-    t.index ["user_id"], name: "index_responses_on_user_id"
   end
 
   create_table "sureads", force: :cascade do |t|

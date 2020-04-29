@@ -2,6 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.headline, .categories {
+@mixin bottom_border {
   border-bottom: 1px solid gray;
+}
+
+.headline, .categories {
+  @include bottom_border;
+}
+
+.suread-header {
+  @include bottom_border;
+}
+
+.sureads-display {
+  @include bottom_border;
+}
+
+.comment-num {
+  color: #C95656;
+}
+
+.user-name {
+  font-weight: bold;
+  color: green;
+}
+
+.suread-box {
+  padding: 15px;
+  background-color: #E3E3E3;
+  border: 1px solid #C4B4B4;
+  margin-bottom: 15px;
 }

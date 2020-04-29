@@ -4,6 +4,7 @@ class SureadsController < ApplicationController
   end
 
   def show
+    @suread = Suread.find(params[:id])
   end
 
   def create
