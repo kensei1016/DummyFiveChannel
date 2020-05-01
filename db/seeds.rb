@@ -34,14 +34,15 @@ end
 
 # sureads
 suread_datas = [
-  { title: "【新型コロナ】〇〇県△△市で感染が拡大。知事より早急な対策が必要",  user_id: 1},
-  { title: "ロシアで雪道を歩行中滑って転倒する事故が発生",  user_id: 1},
-  { title: "中国人観光客による爆買が話題に",  user_id: 2}
+  { title: "【新型コロナ】〇〇県△△市で感染が拡大。知事より早急な対策が必要", comment: "test",  user_id: 1},
+  { title: "ロシアで雪道を歩行中滑って転倒する事故が発生", comment: "test",  user_id: 1},
+  { title: "中国人観光客による爆買が話題に", comment: "test",  user_id: 2}
 ]
 
 suread_datas.each do |suread_data|
   Suread.find_or_create_by!(title: suread_data[:title]) do |suread|
     suread.title = suread_data[:title]
+    suread.comment = suread_data[:comment]
     suread.user_id = suread_data[:user_id]
   end
 end
