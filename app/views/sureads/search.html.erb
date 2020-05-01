@@ -12,7 +12,7 @@
           <%= suread.categories.map{|category| "[#{category.name}]"}.join('') %>
           <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
             <% time = Time.now %>
-            <%= suread.created_at.strftime("%Y年%m月%d日(#{wd[time.wday]}) %M:%d") %>
+            <%= suread.created_at.strftime("%Y年%m月%d日(#{wd[time.wday]}) %H:%M") %>
         </p>
       <% end %>
     </div>

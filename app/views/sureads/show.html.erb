@@ -26,7 +26,7 @@
           <span class="suread-user-name"><%= @suread.user.name %></span>
           <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
           <% time = Time.now %>
-          <%= @suread.created_at.strftime("%Y/%m/%d(#{wd[time.wday]}) %M:%d:%S.%L") %>
+          <%= @suread.created_at.strftime("%Y/%m/%d(#{wd[time.wday]}) %H:%M:%S.%L") %>
         </p>
         <p>
           <%= @suread.comment %>
@@ -39,7 +39,7 @@
             <span class="user-name"><%= response.name %></span>
             <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
             <% time = Time.now %>
-            <%= response.created_at.strftime("%Y/%m/%d(#{wd[time.wday]}) %M:%d:%S.%L") %>
+            <%= response.created_at.strftime("%Y/%m/%d(#{wd[time.wday]}) %H:%M:%S.%L") %>
           </p>
           <p>
             <%= response.comment %>
