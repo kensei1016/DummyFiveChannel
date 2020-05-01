@@ -1,10 +1,11 @@
 <div class="container-fruid">
-  <div class="search-result-sureads row justify-content-center">
+  <div class="search-result-sureads row justify-content-center pt-3">
     <div class="col-11">
       <% @sureads.each do |suread| %>
         <p>
           <%= link_to suread_path(suread) do %>
             <%= suread.title %>
+            <%= "(#{suread.responses.count})" %>
             <%= "[#{suread.user.name}]" %>
           <% end %>
           <br>

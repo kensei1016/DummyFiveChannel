@@ -23,7 +23,7 @@
       <!-- スレ主のコメント -->
       <div class="suread-box">
         <p>
-          <span class="user-name"><%= @suread.user.name %></span>
+          <span class="suread-user-name"><%= @suread.user.name %></span>
           <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
           <% time = Time.now %>
           <%= @suread.created_at.strftime("%Y/%m/%d(#{wd[time.wday]}) %M:%d:%S.%L") %>

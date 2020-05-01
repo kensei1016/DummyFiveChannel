@@ -26,6 +26,7 @@
           <%= suread.categories.map{|category| "[#{category.name}]"}.join('') %>
           <%= link_to suread_path(suread) do %>
             <%= suread.title %>
+            <%= "(#{suread.responses.count})" %>
             <%= "[#{suread.user.name}]" %>
           <% end %>
         </p>
