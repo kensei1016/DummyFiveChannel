@@ -2,3 +2,12 @@
 @import "bootstrap";
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
+
+.error_message {
+  color: red;
+}
+
+.pg-bg {
+  height: 85vh;
+  background-color: #f5f5f5;
+}

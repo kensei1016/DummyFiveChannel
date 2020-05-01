@@ -1,34 +1,40 @@
-<h2>Sign up</h2>
+<div class="pg-bg container-fluid">
+  <div class="row h-100 justify-content-center align-items-center">
+    <div class="contents_center__contents p-5 shadow">
+      <h2 class="text-center mb-3">Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="form-group">
+          <%= f.label "名前", class: "control-label sr-only" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "名前", class:"form-control" %>
+          <%= render partial: "layouts/error_message", locals: {resource: resource, attr: :name} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, class: "control-label sr-only" %>
+          <%= f.email_field :email, placeholder: "メールアドレス", autocomplete: "email", class:"form-control" %>
+          <%= render partial: "layouts/error_message", locals: {resource: resource, attr: :email} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "パスワード", class: "control-label sr-only" %>
+          <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder: "パスワード（6文字以上）" %>
+          <%= render partial: "layouts/error_message", locals: {resource: resource, attr: :password} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "パスワード（確認）", class: "control-label sr-only" %>
+          <%= f.password_field :password_confirmation, class:"form-control", autocomplete: "new-password", placeholder:  "パスワードの確認" %>
+          <%= render partial: "layouts/error_message", locals: {resource: resource, attr: :password_confirmation} %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "Sign up", class:"btn btn-success form-control" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
