@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_04_29_044741) do
   create_table "sureads", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sureads_on_user_id"

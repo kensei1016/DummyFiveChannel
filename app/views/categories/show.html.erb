@@ -1,2 +1,45 @@
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="container-fruid">
+  <div class="row justify-content-center category-header">
+    <div class="col-11">
+      <p>
+        <span class="category-name"><%= @category.name %></span>
+      </p>
+    </div>
+  </div>
+
+  <div class="row justify-content-center category-sureads">
+    <div class="col-11">
+      <% @category.sureads.each do |suread| %>
+        <p>
+          <%= suread.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <%= link_to suread_path(suread) do %>
+            <%= suread.title %>
+            <%= "[#{suread.user.name}]" %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center sureads-input">
+    <div class="col-11 pt-3">
+      <%= form_with model: Suread.new, local: false do |f| %>
+        <div class="form-group">
+          <%= f.text_field :title, autocomplete: "title", placeholder: "スレッドタイトル", class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.text_area :comment, rows: '5', autocomplete: "comment", placeholder: "コメント", class:"form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= hidden_field_tag :category_id, @category.id %>
+        </div>
+        
+        <div class="form-group">
+          <%= f.submit "新規スレッド作成", class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

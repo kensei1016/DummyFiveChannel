@@ -28,7 +28,7 @@
   </div>
   <div class="row justify-content-center sureads-input">
     <div class="col-11 pt-3">
-      <%= form_with model: [@suread, Response.new] do |f| %>
+      <%= form_with model: [@suread, Response.new], local: false do |f| %>
         <div class="form-group">
           <%= f.text_field :name, autocomplete: "name", placeholder: "名前（省略可）", class:"form-control" %>
         </div>
