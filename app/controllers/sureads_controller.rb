@@ -1,4 +1,6 @@
 class SureadsController < ApplicationController
+  before_action :authenticate_user!, only: [:create]
+
   def index
     @sureads = Suread.all.reverse_order
   end
