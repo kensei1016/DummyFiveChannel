@@ -1,5 +1,5 @@
 <div class="container-fruid">
-  <div class="row justify-content-center category-header">
+  <div class="row justify-content-center category-header mt-3">
     <div class="col-11">
       <p>
         <span class="category-name"><%= @category.name %></span>
@@ -9,7 +9,7 @@
 
   <div class="row justify-content-center category-sureads">
     <div class="col-11">
-      <% @category.sureads.each do |suread| %>
+      <% @category.sureads.reverse_order.each do |suread| %>
         <p>
           <%= suread.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
           <%= link_to suread_path(suread) do %>
@@ -23,9 +23,19 @@
 
   <div class="row justify-content-center sureads-input">
     <div class="col-11 pt-3">
-      <%= form_with model: Suread.new, local: false do |f| %>
+      <%= form_with model: @suread, local: false do |f| %>
         <div class="form-group">
           <%= f.text_field :title, autocomplete: "title", placeholder: "スレッドタイトル", class:"form-control" %>
+        </div>
+
+        <div class="form-group row my-2">
+          <div class="col">
+            <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+              <div class="form-check form-check-inline">
+                <%= b.label { b.check_box(class: "form-check-input") + b.text } %>
+              </div>
+            <% end %>
+          </div>
         </div>
 
         <div class="form-group">

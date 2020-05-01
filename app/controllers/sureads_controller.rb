@@ -1,6 +1,6 @@
 class SureadsController < ApplicationController
   def index
-    @sureads = Suread.all
+    @sureads = Suread.all.reverse_order
   end
 
   def show
@@ -8,12 +8,19 @@ class SureadsController < ApplicationController
   end
 
   def create
-    binding.pry
-    category = Category.find(params[:category_id])
     @suread = current_user.sureads.build(suread_params)
-    @suread.categories << category
+
+    category_ids = params[:suread][:category_ids]
+
+    # 配列の最初の要素は空で来るためsliceする
+    category_ids.slice(1..-1).each do |category_id|
+      unless @suread.categories.exists?(category_id)
+        @suread.categories << Category.find(category_id)
+      end
+    end
+
     if @suread.save
-      redirect_to category_path(category)
+      redirect_to sureads_path
     else
     end
   end
@@ -23,6 +30,6 @@ class SureadsController < ApplicationController
   end
 
   def suread_params
-    params.require(:suread).permit(:title, :comment)
+    params.require(:suread).permit(:title, :comment, :category_ids)
   end
 end
