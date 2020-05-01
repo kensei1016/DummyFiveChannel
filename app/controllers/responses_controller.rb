@@ -1,7 +1,7 @@
 class ResponsesController < ApplicationController
   def create
-    suread = Suread.find(params[:suread_id])
-    @response = suread.responses.build(response_params)
+    @suread = Suread.find(params[:suread_id])
+    @response = @suread.responses.build(response_params)
     # １．ユーザがログインand名前を入力　       →　入力した名前で登録
     # ２．ユーザがログインand名前を入力しない　  →　ユーザ名で登録
     # ３．未ログインand名前を入力　             →　入力した名前で登録
@@ -17,8 +17,10 @@ class ResponsesController < ApplicationController
     end
 
     if @response.save
-      redirect_to suread_path(suread)
+      redirect_to suread_path(@suread)
     else
+      @suread = Suread.find(params[:suread_id])
+      render 'sureads/show'
     end
   end
 

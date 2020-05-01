@@ -1,6 +1,15 @@
 <div class="container-fruid">
   <div class="row justify-content-center suread-header">
     <div class="col-11">
+      <% if @response.present? && @response.errors.any? %>
+        <div id ="error_explanation" class="alert alert-danger">
+          <ul>
+            <% @response.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <p>
         <%= @suread.title %>
         <%= "[#{@suread.user.name}]" %>
@@ -11,6 +20,19 @@
   
   <div class="row justify-content-center sureads-display">
     <div class="col-11 pt-3">
+      <!-- スレ主のコメント -->
+      <div class="suread-box">
+        <p>
+          <span class="user-name"><%= @suread.user.name %></span>
+          <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+          <% time = Time.now %>
+          <%= @suread.created_at.strftime("%Y/%m/%d(#{wd[time.wday]}) %M:%d:%S.%L") %>
+        </p>
+        <p>
+          <%= @suread.comment %>
+        </p>
+      </div>
+      <!-- レス -->
       <% @suread.responses.each do |response| %>
         <div class="suread-box">
           <p>
@@ -28,7 +50,7 @@
   </div>
   <div class="row justify-content-center sureads-input">
     <div class="col-11 pt-3">
-      <%= form_with model: [@suread, Response.new], local: false do |f| %>
+      <%= form_with model: [@suread, Response.new], local: true do |f| %>
         <div class="form-group">
           <%= f.text_field :name, autocomplete: "name", placeholder: "名前（省略可）", class:"form-control" %>
         </div>

@@ -23,7 +23,7 @@
 
   <div class="row justify-content-center sureads-input">
     <div class="col-11 pt-3">
-      <%= form_with model: @suread, local: false do |f| %>
+      <%= form_with model: @suread, local: true do |f| %>
         <div class="form-group">
           <%= f.text_field :title, autocomplete: "title", placeholder: "スレッドタイトル", class:"form-control" %>
         </div>
