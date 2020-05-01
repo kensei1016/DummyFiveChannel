@@ -10,11 +10,11 @@
           </ul>
         </div>
       <% end %>
-      <p>
+      <p class="pt-3">
         <%= @suread.title %>
         <%= "[#{@suread.user.name}]" %>
       </p>
-      <p class="comment-num"><%= @suread.responses.count %>コメント</p>
+      <p class="comment-num"><%= @suread.responses.count + 1 %>コメント</p>
     </div>
   </div>
   
