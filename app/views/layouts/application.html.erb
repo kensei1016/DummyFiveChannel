@@ -20,8 +20,8 @@
       <div class="search-form-block">
         <%= search_form_for @q, url: search_sureads_path, class: "form-inline navbar-form navbar-right" do |f| %>
           <div class="form-group">
-            <%= f.label :title_or_responses_comment_cont, 'Title', class: 'control-label sr-only' %>
-            <%= f.search_field :title_or_responses_comment_cont, placeholder: "検索ワードを入力...", class: 'form-control' %>
+            <%= f.label :title_or_comment_or_responses_comment_cont, 'Title', class: 'control-label sr-only' %>
+            <%= f.search_field :title_or_comment_or_responses_comment_cont, placeholder: "検索ワードを入力...", class: 'form-control' %>
           </div>
           <%= f.submit class: "btn btn-primary" %>
         <% end %>
