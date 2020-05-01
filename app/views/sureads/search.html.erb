@@ -1,0 +1,20 @@
+<div class="container-fruid">
+  <div class="search-result-sureads row justify-content-center">
+    <div class="col-11">
+      <% @sureads.each do |suread| %>
+        <p>
+          <%= link_to suread_path(suread) do %>
+            <%= suread.title %>
+            <%= "[#{suread.user.name}]" %>
+          <% end %>
+          <br>
+          <%= suread.categories.map{|category| "[#{category.name}]"}.join('') %>
+          <% wd = ["日", "月", "火", "水", "木", "金", "土"] %>
+            <% time = Time.now %>
+            <%= suread.created_at.strftime("%Y年%m月%d日(#{wd[time.wday]}) %M:%d") %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+
+</div>

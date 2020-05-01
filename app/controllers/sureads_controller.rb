@@ -18,6 +18,10 @@ class SureadsController < ApplicationController
     end
   end
 
+  def search
+    @sureads = @q.result(distinct: true).reverse_order
+  end
+
   def suread_params
     params.require(:suread).permit(:title, :comment)
   end
