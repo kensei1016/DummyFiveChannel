@@ -3,14 +3,22 @@
     <p class="col-11">最新スレッドたれ流し中。。。(news)</p>
   </div>
 
-  <div class="categories row justify-content-center">
+  <div class="categories row justify-content-center pt-3">
     <p class="col-11">
-      <%= link_to 'ニュース速報＋', category_path(Category.find(1)) %>
+      <%= link_to Category.find(1).name, category_path(Category.find(1)) %>
       では社会・政治・国際・経済からネットの話題や地方ニュースまで様々な範囲のニュースを扱っています。
+    </p>
+    <p class="col-11">
+      <%= link_to Category.find(2).name, category_path(Category.find(2)) %>
+      では芸能、音楽、スポーツから、ネットの話題や地方のスポーツ、そして祭礼まで、様々な範囲の芸能ニュースを扱っています。
+    </p>
+    <p class="col-11">
+      <%= link_to Category.find(3).name, category_path(Category.find(3)) %>
+      では政治に関する様々な範囲のニュースを扱っています。
     </p>
   </div>
 
-  <div class="sureads row justify-content-center">
+  <div class="sureads row justify-content-center pt-3">
     <div class="col-11">
       <% @sureads.each do |suread| %>
         <p>
