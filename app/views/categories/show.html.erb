@@ -1,6 +1,15 @@
 <div class="container-fruid">
   <div class="row justify-content-center category-header mt-3">
     <div class="col-11">
+      <% if @suread.present? && @suread.errors.any? %>
+        <div id ="error_explanation" class="alert alert-danger">
+          <ul>
+            <% @suread.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <p>
         <span class="category-name"><%= @category.name %></span>
       </p>

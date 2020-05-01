@@ -9,6 +9,7 @@ class SureadsController < ApplicationController
 
   def create
     @suread = current_user.sureads.build(suread_params)
+    @category = Category.find(params[:category_id])
 
     category_ids = params[:suread][:category_ids]
 
@@ -22,6 +23,7 @@ class SureadsController < ApplicationController
     if @suread.save
       redirect_to sureads_path
     else
+      render 'categories/show'
     end
   end
 
